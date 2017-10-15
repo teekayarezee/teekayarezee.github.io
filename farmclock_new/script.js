@@ -1,165 +1,107 @@
 //Script Start
 var timeDate, timeAMPM, timeHour, timeMin, timeSec,
     del = -405,
-    hh,
-    mm,
-    timeInMins,
-    tt,
-    spiritNow = "",
     step = 6400,
-    sTreeTick1,
-    fTreeTick1,
-    cactiTick1,
-    rTreeTick1,
-    hTreeTick1,
-    aTreeTick1,
+    hh, mm, tt,
+    timeInMins,
+    sTreeTick1, fTreeTick1, cactiTick1, rTreeTick1, hTreeTick1, aTreeTick1,
     sTreeCdownHours, sTreeCdownMins, sTreeCdownSecs,
     cactiCdownHours, cactiCdownMins, cactiCdownSecs,
     fTreeCdownHours, fTreeCdownMins, fTreeCdownSecs,
     rTreeCdownHours, rTreeCdownMins, rTreeCdownSecs,
-    herbCdownHours = "00",
-    herbCdownMins, herbCdownSecs,
-    allotCdownHours = "00",
-    allotCdownMins, allotCdownSecs,
+    herbCdownHours, herbCdownMins, herbCdownSecs,
+    allotCdownHours, allotCdownMins, allotCdownSecs,
     theData,
-    millis, millis1, millis2, millis3, millis4, millis5, millis6,
     hours, mins, secs,
-    secs1, mins1, hours1,
-    mins2, hours2,
-    mins3, hours3,
-    mins4, hours4,
-    mins5, hours5,
-    mins6, hours6,
-    secs1, mins1, hours1,
-    mins2, hours2,
-    mins3, hours3,
-    mins4, hours4,
-    mins5, hours5,
-    mins6, hours6;
+    hours1, mins1, secs1,
+    mins2, hours2, mins3, hours3, mins4, hours4, mins5, hours5, mins6, hours6,
+    millis, millis1, millis2, millis3, millis4, millis5, millis6;
 
 function countDown() {
     "use strict";
 
     timeDate = new Date();
-    timeAMPM = (timeDate.gethours >= 12) ? "PM" : "AM";
-    timeHour = timeDate.getHours() % 12 || 12;
+    timeAMPM = (timeDate.getHours() >= 12) ? "PM" : "AM";
+    timeHour = timeDate.getHours();
     timeMin = timeDate.getMinutes();
-    if (timeMin === 0) {
-        mm = 1;
-    } else {
-        mm = timeMin * 60;
-    }
+    if (timeMin === 0) { mm = 1; } else { mm = timeMin * 60; }
     timeSec = timeDate.getSeconds();
     timeInMins = (timeHour * 60) + timeMin;
+
     hh = timeHour * 60 * 60;
     tt = Math.floor((hh + mm + timeSec) / 30) + del;
 
-    sTreeTick1 = step + 320 - timeInMins;
-    fTreeTick1 = step + 160 - timeInMins;
-    cactiTick1 = step + 80 - timeInMins;
-    rTreeTick1 = step + 40 - timeInMins;
-    hTreeTick1 = step + 20 - timeInMins;
-    aTreeTick1 = step + 10 - timeInMins;
-
     //countdown for spirit tree tick
-    step = 3200;
-    while (timeInMins <= step) {
-        step = step - 320;
-    }
-    sTreeTick1 = step + 320 - timeInMins;
-
     step = 6400;
-    while (timeInMins <= step) {
-        step = step - 160;
-    }
+    while (timeInMins <= step) { step = step - 320; }
+    sTreeTick1 = step + 320 - timeInMins;
+    if (sTreeTick1 < 1) { sTreeTick1 = 320; }
+    
+    step = 6400;
+    while (timeInMins <= step) { step = step - 160; }
     fTreeTick1 = step + 160 - timeInMins;
+    if (fTreeTick1 < 1) { fTreeTick1 = 160; }
+    
     //cacti 80 min cycles
     step = 6400;
-    while (timeInMins <= step) {
-        step = step - 80;
-    }
+    while (timeInMins <= step) { step = step - 80; }
     cactiTick1 = step + 80 - timeInMins;
-
+    if (cactiTick1 < 1) { cactiTick1 = 80; }
+    
     //reg tree 40 min cycles
     step = 6400;
-    while (timeInMins <= step) {
-        step = step - 40;
-    }
+    while (timeInMins <= step) { step = step - 40; }
     rTreeTick1 = step + 40 - timeInMins;
+    if (rTreeTick1 < 1) { rTreeTick1 = 40; }
+    
     //herb  20 min cycles
     step = 6400;
-    while (timeInMins <= step) {
-        step = step - 20;
-    }
+    while (timeInMins <= step) { step = step - 20; }
     hTreeTick1 = step + 20 - timeInMins;
-
+    if (hTreeTick1 < 1) { hTreeTick1 = 20; }
+    
     //allotment  10 min cycles
     step = 6400;
-    while (timeInMins <= step) {
-        step = step - 10;
-    }
+    while (timeInMins <= step) { step = step - 10; }
     aTreeTick1 = step + 10 - timeInMins;
+    if (aTreeTick1 < 1) { aTreeTick1 = 10; }
 
-    sTreeCdownHours = (sTreeTick1 * 60) - timeSec;
-    if (sTreeCdownHours === 12) {
-        sTreeCdownHours = '00';
-    }
-    sTreeCdownMins = (sTreeTick1 * 60) - timeSec;
-    sTreeCdownSecs = (sTreeTick1 * 60) - timeSec;
-    sTreeCdownSecs = ((sTreeCdownHours * 3600) + (sTreeCdownMins * 60) + sTreeCdownSecs) * 1000;
+    sTreeCdownHours = Math.floor((((sTreeTick1 * 60) - timeSec) / 3600));
+    if (sTreeCdownHours === 12) { sTreeCdownHours = 0; }
+    sTreeCdownMins = Math.floor(((((sTreeTick1 * 60) - timeSec) % 3600)) / 60);
+	sTreeCdownSecs = ((sTreeCdownHours * 3600) + (sTreeCdownMins * 60) + (((sTreeTick1 * 60) - timeSec) % 60)) * 1000;
+    
     //cacti
-    cactiCdownHours = (cactiTick1 * 60) - timeSec;
-    if (cactiCdownHours === 12) {
-        cactiCdownHours = '00';
-    }
-    cactiCdownMins = (cactiTick1 * 60) - timeSec;
-    cactiCdownSecs = (cactiTick1 * 60) - timeSec;
-    cactiCdownSecs = ((cactiCdownHours * 3600) + (cactiCdownMins * 60) + cactiCdownSecs) * 1000;
+    cactiCdownHours = Math.floor((((cactiTick1 * 60) - timeSec) / 3600));
+    if (cactiCdownHours === 12) { cactiCdownHours = 0; }
+    cactiCdownMins = Math.floor(((((cactiTick1 * 60) - timeSec) % 3600)) / 60);
+    cactiCdownSecs = ((cactiCdownHours * 3600) + (cactiCdownMins * 60) + (((cactiTick1 * 60) - timeSec) % 60)) * 1000;
+    
     //fruit tree
-    fTreeCdownHours = (fTreeTick1 * 60) - timeSec;
-    if (fTreeCdownHours === 12) {
-        fTreeCdownHours = '00';
-    }
-    fTreeCdownMins = (fTreeTick1 * 60) - timeSec;
-    fTreeCdownSecs = (fTreeTick1 * 60) - timeSec;
-    fTreeCdownSecs = ((fTreeCdownHours * 3600) + (fTreeCdownMins * 60) + fTreeCdownSecs) * 1000;
+    fTreeCdownHours = Math.floor((((fTreeTick1 * 60) - timeSec) / 3600));
+    if (fTreeCdownHours === 12) { fTreeCdownHours = 0; }
+    fTreeCdownMins = Math.floor((((fTreeTick1 * 60) - timeSec) % 3600) / 60);
+    fTreeCdownSecs = ((fTreeCdownHours * 3600) + (fTreeCdownMins * 60) + (((fTreeTick1 * 60) - timeSec) % 60)) * 1000;
+    
     //reg tree
-    rTreeCdownHours = (rTreeTick1 * 60) - timeSec;
-    if (rTreeCdownHours === 12) {
-        rTreeCdownHours = '00';
-    }
-    rTreeCdownMins = (rTreeTick1 * 60) - timeSec;
-    rTreeCdownSecs = (rTreeTick1 * 60) - timeSec;
-    rTreeCdownSecs = ((rTreeCdownMins * 60) + rTreeCdownSecs) * 1000;
+    rTreeCdownHours = Math.floor((((rTreeTick1 * 60) - timeSec) / 3600));
+    if (rTreeCdownHours === 12) { rTreeCdownHours = 0; }
+    rTreeCdownMins = Math.floor(((((rTreeTick1 * 60) - timeSec) % 3600)) / 60);
+    rTreeCdownSecs = ((rTreeCdownMins * 60) + (((rTreeTick1 * 60) - timeSec) % 60)) * 1000;
+    
     //herb
-    herbCdownHours = '00';
-    herbCdownMins = (hTreeTick1 * 60) - timeSec;
-    herbCdownSecs = (hTreeTick1 * 60) - timeSec;
-    herbCdownSecs = ((herbCdownMins * 60) + herbCdownSecs) * 1000;
+    herbCdownHours = 0;
+    herbCdownMins = Math.floor(((((hTreeTick1 * 60) - timeSec) % 3600)) / 60);
+    herbCdownSecs = ((herbCdownMins * 60) + (((hTreeTick1 * 60) - timeSec) % 60)) * 1000;
+    
     //allotment
-    allotCdownHours = '00';
-    allotCdownMins = (aTreeTick1 * 60) - timeSec;
+    allotCdownHours = 0;
+    allotCdownMins = Math.floor(((((aTreeTick1 * 60) - timeSec) % 3600)) / 60);
     if (allotCdownMins > 9) {
-        allotCdownMins = '10';
-        allotCdownSecs = '00';
-    } else {
-        allotCdownSecs = (aTreeTick1 * 60) - timeSec;
-    }
-    allotCdownSecs = ((allotCdownMins * 60) + allotCdownSecs) * 1000;
-
-    millis1 = sTreeCdownSecs;
-    millis2 = fTreeCdownSecs;
-    millis3 = cactiCdownSecs;
-    millis4 = rTreeCdownSecs;
-    millis5 = herbCdownSecs;
-    millis6 = allotCdownSecs;
-    hours = (timeHour * 3600) * 1000;
-    mins = timeMin * 60000;
-    secs = timeSec * 1000;
-    millis = hours + mins + secs;
-
-
-
+        allotCdownMins = 10;
+        allotCdownSecs = 0;
+    } else { allotCdownSecs = (aTreeTick1 * 60) - timeSec; }
+    allotCdownSecs = ((allotCdownMins * 60) + (((aTreeTick1 * 60) - timeSec) % 60)) * 1000;
 
     theData = "data: " + timeDate.toString().split(' ').splice(1, 3).join(' ');
     theData += "~" + timeHour + "~" + timeMin + "~" + timeSec + "~" + timeAMPM + "~" + sTreeCdownSecs;
@@ -168,8 +110,6 @@ function countDown() {
     theData += "~" + allotCdownSecs + "~" + tt;
     theData += "\n\n";
 
-
-    //echo "data: The server time is: {$time}.n.n";
     hours = (timeHour * 3600) * 1000;
     mins = timeMin * 60000;
     secs = timeSec * 1000;
@@ -189,24 +129,12 @@ function countDown() {
     millis5 -= 1000;
     millis6 -= 1000;
 
-    if (millis1 > 19200000 || millis1 < 0) {
-        millis1 = 19200000;
-    }
-    if (millis2 > 9600000 || millis2 < 0) {
-        millis2 = 9600000;
-    }
-    if (millis3 > 4800000 || millis3 < 0) {
-        millis3 = 4800000;
-    }
-    if (millis4 > 2400000 || millis4 < 0) {
-        millis4 = 2400000;
-    }
-    if (millis5 > 1200000 || millis5 < 0) {
-        millis5 = 1200000;
-    }
-    if (millis6 > 600000 || millis6 < 0) {
-        millis6 = 600000;
-    }
+    if (millis1 > 19200000 || millis1 < 0) { millis1 = 19200000; }
+    if (millis2 > 9600000 || millis2 < 0) { millis2 = 9600000; }
+    if (millis3 > 4800000 || millis3 < 0) { millis3 = 4800000; }
+    if (millis4 > 2400000 || millis4 < 0) { millis4 = 2400000; }
+    if (millis5 > 1200000 || millis5 < 0) { millis5 = 1200000; }
+    if (millis6 > 600000 || millis6 < 0) { millis6 = 600000; }
 
     hours1 = Math.floor(millis1 / 36e5);
     mins1 = Math.floor((millis1 % 36e5) / 6e4);
