@@ -808,7 +808,7 @@ date_default_timezone_set('UTC');
 
 
 
-
+                
             </DIV>
             <!-- end bodyMid -->
 
@@ -913,7 +913,7 @@ include("start.php");
 ?>
             t = setInterval(function() {
                 countDown()
-            }, 1000);
+            }, 1600000);
         </script>
     </BODY>
 

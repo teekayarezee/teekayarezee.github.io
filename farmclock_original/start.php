@@ -60,14 +60,14 @@ while($timeInMins<=$step){
 $step=$step-20;
 }
 $hTreeTick1=$step+20-$timeInMins;
-	
+
 //allotment  10 min cycles
 $step = 6400;
 while($timeInMins<=$step){
 $step=$step-10;
 }
 $aTreeTick1=$step+10-$timeInMins;
-	
+
 	$sTreeCdownHours=gmdate('g', ($sTreeTick1*60)-$s);
 	if ($sTreeCdownHours==12){$sTreeCdownHours='00';}
 	$sTreeCdownMins =gmdate('i', ($sTreeTick1*60)-$s);
@@ -106,8 +106,8 @@ $aTreeTick1=$step+10-$timeInMins;
 		$allotCdownSecs =gmdate('s', ($aTreeTick1*60)-$s);
 	}
  $allotCdownSecs=(($allotCdownMins*60)+$allotCdownSecs)*1000;
- 
- echo'var millis1 = '.$sTreeCdownsSecs.',millis2 = '.$fTreeCdownSecs.',millis3 = '.$cactiCdownSecs.',millis4 = '.$rTreeCdownSecs.',millis5 = '.$herbCdownSecs.',millis6 = '.$allotCdownSecs.';';
+
+echo'var millis1 = '.$sTreeCdownsSecs.',millis2 = '.$fTreeCdownSecs.',millis3 = '.$cactiCdownSecs.',millis4 = '.$rTreeCdownSecs.',millis5 = '.$herbCdownSecs.',millis6 = '.$allotCdownSecs.';';
 echo'document.getElementById("currentDate").innerHTML="'.$timeDate.'";';
 echo'var hours=('.$timeHour.'*3600)*1000;';
 echo'var mins='.$timeMin.'*60000;';

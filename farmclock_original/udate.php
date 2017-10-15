@@ -37,7 +37,7 @@ $total_days = floor(time()/86400);
 			$h=$h+24;
 			}else{
 			$h=$h+36;
-			}	
+			}
 		}
 	}else{
 		if (date('A')=='AM'){//day 2
@@ -51,7 +51,7 @@ $total_days = floor(time()/86400);
 			$h=$h+0;
 			}else{
 			$h=$h+12;
-			}	
+			}
 		}
 	}
 
@@ -132,13 +132,17 @@ if ($aTreeTick1<1){$aTreeTick1=10;}
 	$herbCdownMins =gmdate('i', ($hTreeTick1*60)-$s);
 	$herbCdownSecs =gmdate('s', ($hTreeTick1*60)-$s);
 	$herbCdownSecs=(($herbCdownMins*60)+$herbCdownSecs)*1000;
-//allotment
+	//allotment
 	$allotCdownHours='00';
 	$allotCdownMins =gmdate('i', ($aTreeTick1*60)-$s);
-	$allotCdownSecs =gmdate('s', (60-$s));
+	if($allotCdownMins>9){
+		$allotCdownMins='10';
+		$allotCdownSecs='00';
+	}else{
+		$allotCdownSecs =gmdate('s', ($aTreeTick1*60)-$s);
+	}
+	$allotCdownSecs=(($allotCdownMins*60)+$allotCdownSecs)*1000;
 
-
- $allotCdownSecs=(($allotCdownMins*60)+$allotCdownSecs)*1000;
   echo "retry: 15000\n";
 $theData="data: {$timeDate}~{$timeHour}~{$timeMin}~{$timeSec}~{$timeAMPM}~{$sTreeCdownsSecs}";
 $theData.="~{$fTreeCdownSecs}~{$cactiCdownSecs}";
