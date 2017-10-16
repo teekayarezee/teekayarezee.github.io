@@ -23,6 +23,7 @@ function countDown() {
     timeDate = new Date();
     timeAMPM = (timeDate.getHours() >= 12) ? "PM" : "AM";
     timeHour = timeDate.getHours();
+    if (timeHour < 12) { timeHour += 12; } else if (timeHour === 0) { timeHour = 12; }
     timeMin = timeDate.getMinutes();
     if (timeMin === 0) { mm = 1; } else { mm = timeMin * 60; }
     timeSec = timeDate.getSeconds();
@@ -135,39 +136,23 @@ function countDown() {
     if (millis4 > 2400000 || millis4 < 0) { millis4 = 2400000; }
     if (millis5 > 1200000 || millis5 < 0) { millis5 = 1200000; }
     if (millis6 > 600000 || millis6 < 0) { millis6 = 600000; }
-
-    hours1 = Math.floor(millis1 / 36e5);
-    mins1 = Math.floor((millis1 % 36e5) / 6e4);
-    secs1 = Math.floor((millis1 % 6e4) / 1000);
-    hours2 = Math.floor(millis2 / 36e5);
-    mins2 = Math.floor((millis2 % 36e5) / 6e4);
-    hours3 = Math.floor(millis3 / 36e5);
-    mins3 = Math.floor((millis3 % 36e5) / 6e4);
-    hours4 = Math.floor(millis4 / 36e5);
-    mins4 = Math.floor((millis4 % 36e5) / 6e4);
-    hours5 = Math.floor(millis5 / 36e5);
-    mins5 = Math.floor((millis5 % 36e5) / 6e4);
-    hours6 = Math.floor(millis6 / 36e5);
-    mins6 = Math.floor((millis6 % 36e5) / 6e4);
-    hours = Math.floor(millis / 36e5);
-    mins = Math.floor((millis % 36e5) / 6e4);
-    secs = Math.floor((millis % 6e4) / 1000);
-    secs1 = ('0' + (secs1)).slice(-2);
-    mins1 = ('0' + (mins1)).slice(-2);
-    hours1 = ('0' + (hours1)).slice(-2);
-    mins2 = ('0' + (mins2)).slice(-2);
-    hours2 = ('0' + (hours2)).slice(-2);
-    mins3 = ('0' + (mins3)).slice(-2);
-    hours3 = ('0' + (hours3)).slice(-2);
-    mins4 = ('0' + (mins4)).slice(-2);
-    hours4 = ('0' + (hours4)).slice(-2);
-    mins5 = ('0' + (mins5)).slice(-2);
-    hours5 = ('0' + (hours5)).slice(-2);
-    mins6 = ('0' + (mins6)).slice(-2);
-    hours6 = ('0' + (hours6)).slice(-2);
-    secs = ('0' + (secs)).slice(-2);
-    mins = ('0' + (mins)).slice(-2);
-    hours = ('0' + (hours)).slice(-2);
+    
+    secs1 = ('0' + (Math.floor((millis1 % 6e4) / 1000))).slice(-2);
+    mins1 = ('0' + (Math.floor((millis1 % 36e5) / 6e4))).slice(-2);
+    hours1 = ('0' + (Math.floor(millis1 / 36e5))).slice(-2);
+    mins2 = ('0' + (Math.floor((millis2 % 36e5) / 6e4))).slice(-2);
+    hours2 = ('0' + (Math.floor(millis2 / 36e5))).slice(-2);
+    mins3 = ('0' + (Math.floor((millis3 % 36e5) / 6e4))).slice(-2);
+    hours3 = ('0' + (Math.floor(millis3 / 36e5))).slice(-2);
+    mins4 = ('0' + (Math.floor((millis4 % 36e5) / 6e4))).slice(-2);
+    hours4 = ('0' + (Math.floor(millis4 / 36e5))).slice(-2);
+    mins5 = ('0' + (Math.floor((millis5 % 36e5) / 6e4))).slice(-2);
+    hours5 = ('0' + (Math.floor(millis5 / 36e5))).slice(-2);
+    mins6 = ('0' + (Math.floor((millis6 % 36e5) / 6e4))).slice(-2);
+    hours6 = ('0' + (Math.floor(millis6 / 36e5))).slice(-2);
+    secs = ('0' + (Math.floor((millis % 6e4) / 1000))).slice(-2);
+    mins = ('0' + (Math.floor((millis % 36e5) / 6e4))).slice(-2);
+    hours = ('0' + (Math.floor(millis / 36e5))).slice(-2);
 
     document.getElementById('count1').innerHTML = hours1 + ':' + mins1 + ':' + secs1;
     document.getElementById('count2').innerHTML = hours2 + ':' + mins2 + ':' + secs1;
