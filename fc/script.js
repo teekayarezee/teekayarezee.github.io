@@ -1,5 +1,5 @@
 //Script Start
-var timeDate, timeAMPM, timeHour, timeMin, timeSec,
+var timeDate, timeAMPM, timeHour, timeMin, timeSec, timeHourDisplay,
     del = -405,
     step,
     hh, mm, tt,
@@ -23,6 +23,7 @@ function countDown() {
     timeDate = new Date();
     timeAMPM = (timeDate.getHours() >= 12) ? "PM" : "AM";
     timeHour = timeDate.getHours();
+    timeHourDisplay = timeDate.getHours();
     if (timeHour < 12) { timeHour += 24; } else if (timeHour === 0) { timeHour = 12; }
     timeMin = timeDate.getMinutes();
     if (timeMin === 0) { mm = 1; } else { mm = timeMin * 60; }
@@ -162,7 +163,7 @@ function countDown() {
     document.getElementById('count4').innerHTML = hours4 + ':' + mins4 + ':' + secs1;
     document.getElementById('count5').innerHTML = hours5 + ':' + mins5 + ':' + secs1;
     document.getElementById('count6').innerHTML = hours6 + ':' + mins6 + ':' + secs1;
-    document.getElementById('currentHour').innerHTML = hours;
+    document.getElementById('currentHour').innerHTML = timeHourDisplay;
     document.getElementById('currentMin').innerHTML = mins;
     document.getElementById('currentSec').innerHTML = secs;
     document.getElementById("am_pm").innerHTML = " " + timeAMPM;
