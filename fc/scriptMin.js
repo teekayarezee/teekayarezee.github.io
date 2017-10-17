@@ -28,9 +28,10 @@ function countDown() {
         
         mathHours = function (m) { return ("0" + (Math.floor(m / 36e5))).slice(-2); },
         mathMins = function (m) { return ("0" + (Math.floor((m % 36e5) / 6e4))).slice(-2); },
-        getMSecs = function (n) {var tick, step = 6400; while (timeInMins <= step) { step -= n; } tick = step + n - timeInMins; if (tick < 1) { tick = n; } tick *= 60;
-                                var hour = Math.floor((tick - timeSec) / 3600), min = Math.floor(((tick - timeSec) % 3600) / 60);
-                                return ((hour * 3600) + (min * 60) + ((tick - timeSec) % 60)) * 1e3; },
+        getMSecs = function (n) { var tick, step = 6400, hour, min;
+                                 while (timeInMins <= step) { step -= n; } tick = step + n - timeInMins;
+                                 if (tick < 1) { tick = n; } tick *= 60; hour = Math.floor((tick - timeSec) / 3600); min = Math.floor(((tick - timeSec) % 3600) / 60);
+                                 return ((hour * 3600) + (min * 60) + ((tick - timeSec) % 60)) * 1e3; },
         milli = function (n, t) { return (t > n * 1e5 || t * 1e5 < 0) ? n * 1e5 : t; },
         updateEl = function (e, c) { document.getElementById(e).innerHTML = c; },
         
