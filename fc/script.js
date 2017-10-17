@@ -19,19 +19,19 @@ function getSecsFromMins(a, t) { "use strict"; return Math.floor((((a * 60) - t)
 function getSecsFromTick(a, t) { "use strict"; return ((a * 60) - t) % 60; }
 function getSecs(a, b, c, t) { "use strict"; return ((a * 3600) + (b * 60) + getSecsFromTick(c, t)) * 1e3; }
 function setTick(a, t) { "use strict"; var o, step = 6400; while (t <= step) { step -= a; } o = step + a - t; if (o < 1) { o = a; } return o; }
-function updateElement(c, h, m, s) { "use strict"; document.getElementById(c).innerHTML = h + ':' + m + ':' + s; }
 function getCDHours(s, t) { "use strict"; return (getSecsFromHours(s, t) === 12) ? 0 : getSecsFromHours(s, t); }
+function updateElement(c, h, m, s) { "use strict"; document.getElementById(c).innerHTML = h + ':' + m + ':' + s; }
 
 // Main Function
 function countDown() {
     "use strict";
     
     var timeDate = new Date(),
-        timeAMPM = (timeDate.getHours() >= 12) ? "PM" : "AM",
-        timeSec = timeDate.getSeconds(),
-        timeHourD = timeDate.getHours(),
-        timeHour = (timeDate.getHours() < 12) ? timeDate.getHours() + 24 : (timeDate.getHours() === 0) ? 12 : timeDate.getHours(),
-        timeMin = timeDate.getMinutes(),
+        timeAMPM = (timeDate.getUTCHours() >= 12) ? "PM" : "AM",
+        timeSec = timeDate.getUTCSeconds(),
+        timeHourD = timeDate.getUTCHours(),
+        timeHour = (timeDate.getUTCHours() < 12) ? timeDate.getUTCHours() + 24 : (timeDate.getUTCHours() === 0) ? 12 : timeDate.getUTCHours(),
+        timeMin = timeDate.getUTCMinutes(),
         timeInMins = (timeHour * 60) + timeMin,
         hh = timeHour * 60 * 60,
         mm = timeMin === 0 ? 1 : timeMin * 60,
