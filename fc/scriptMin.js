@@ -5,11 +5,13 @@
 //   |_| |_|\_\_| /____|
 //
 // Farming Tick Timer/Clock/Calculator 
-// PHP -> HTML/JS Re-write
+// PHP to HTML/JS Re-write
+// Many thanks to "Indecent Act" for permission
 //
-// Original Author: Indecent Act
+// Version 1.4c
+// Original Author: "Indecent Act"
 //                  @RSLinkify
-// Author:          TkrZ / Irobot335
+// Author:          "TkrZ" / "Irobot335"
 //                  @TkrZ
 
 // Main Function
@@ -23,7 +25,6 @@ function countDown() {
         timeMin = timeDate.getUTCMinutes(),
         timeInMins = (timeHour * 60) + timeMin,
         hh = timeHour * 3600,
-        //mm = timeMin === 0 ? 1 : timeMin * 60,
         tt = Math.floor((hh + timeMin * 60 + timeSec) / 30) + -405,
         
         mathHours = function (m) { return ("0" + (Math.floor(m / 36e5))).slice(-2); },
@@ -41,7 +42,7 @@ function countDown() {
         mins1 = mathMins(millis1),
         secs1 = ('0' + (Math.floor((millis1 % 6e4) / 1e3))).slice(-2),
         
-        //fTreeCDSecs = getMSecs(160),
+        //Fruit tree 160 min cycles
         millis2 = milli(96, getMSecs(160)),
         hours2 = mathHours(millis2),
         mins2 = mathMins(millis2),
