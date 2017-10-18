@@ -1,18 +1,17 @@
-//  _____ _        _____
+/* eslint-env browser */
+// _____ _        _____
 // |_   _| | ___ _|__  /
 //   | | | |/ / '__|/ / 
 //   | | |   <| |  / /_ 
 //   |_| |_|\_\_| /____|
 //
-// Farming Tick Timer/Clock/Calculator 
-// PHP -> HTML/JS Re-write
+// Farming Tick Timer/Clock/Calculator - PHP to HTML/JS Re-write
+// Many thanks to "Indecent Act" for permission
 //
-// Original Author: Indecent Act
-//                  @RSLinkify
-// Author:          TkrZ / Irobot335
-//                  @TkrZ
+// Version 1.6c
+// Original Author: "Indecent Act" / @RSLinkify
+// Author:          "TkrZ" / @TkrZ
 
-// Main Function
 function countDown() {
     "use strict";
     
@@ -66,12 +65,12 @@ function countDown() {
         hours6 = mathHours(millis6),
         mins6 = mathMins(millis6);
     
-    updateEl("count0", hours1 + ":" + mins1 + ":" + secs1);
-    updateEl("count1", hours2 + ":" + mins2 + ":" + secs1);
-    updateEl("count2", hours3 + ":" + mins3 + ":" + secs1);
-    updateEl("count3", hours4 + ":" + mins4 + ":" + secs1);
-    updateEl("count4", hours5 + ":" + mins5 + ":" + secs1);
-    updateEl("count5", hours6 + ":" + mins6 + ":" + secs1);
+    updateEl("count1", hours1 + ":" + mins1 + ":" + secs1);
+    updateEl("count2", hours2 + ":" + mins2 + ":" + secs1);
+    updateEl("count3", hours3 + ":" + mins3 + ":" + secs1);
+    updateEl("count4", hours4 + ":" + mins4 + ":" + secs1);
+    updateEl("count5", hours5 + ":" + mins5 + ":" + secs1);
+    updateEl("count6", hours6 + ":" + mins6 + ":" + secs1);
     updateEl("currentHour", timeDate.getUTCHours());
     updateEl("currentMin", timeMin);
     updateEl("currentSec", timeSec);
@@ -79,3 +78,5 @@ function countDown() {
     updateEl("currentDate", timeDate.toString().split(' ').splice(1, 3).join(' '));
     document.getElementById("icon").style.backgroundPosition = "-" + tt + "px 0px";
 }
+
+document.addEventListener("DOMContentLoaded", function () { "use strict"; countDown(); });
