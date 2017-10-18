@@ -24,11 +24,18 @@ function countDown() {
         updateEl = function (e, c) { document.getElementById(e).innerHTML = c; },
         secs = ("0" + (60 - tD.getUTCSeconds())).slice(-2),
         
-        updateArray = function () { for (i = 6; i > 0; i -= 1) { var p = 6400, tick, hour, min, t;
-                                                                while (timeInMins <= p) { p -= a; } tick = p + a - timeInMins;
-                                                                if (tick < 1) { tick = a; } tick *= 60; hour = Math.floor((tick - timeSec) / 3600); min = Math.floor(((tick - timeSec) % 3600) / 60);
+        updateArray = function () { for (i = 6; i > 0; i -= 1) { var p = 6400, hour, min, t, tick;
+                                                                while (timeInMins <= p) { p -= a; }
+                                                                tick = p + a - timeInMins;
+                                                                if (tick < 1) { tick = a; }
+                                                                
+                                                                tick *= 60;
+                                                                hour = Math.floor((tick - timeSec) / 3600);
+                                                                min = Math.floor(((tick - timeSec) % 3600) / 60);
                                                                 t = ((hour * 3600) + (min * 60) + ((tick - timeSec) % 60)) * 1e3;
                                                                 t = (t > b * 1e5 || t < 0) ? b * 1e5 : t;
+                                                                
+                                                                console.log(b);
                                                                 a *= 2;
                                                                 b *= 2;
                                                                 updateEl("count" + i, ("0" + (Math.floor(t / 36e5))).slice(-2) + ":" + ("0" + (Math.floor((t % 36e5) / 6e4))).slice(-2) + ":" + secs); } };
@@ -43,3 +50,4 @@ function countDown() {
 }
 
 document.addEventListener("DOMContentLoaded", function () { "use strict"; countDown(); });
+
