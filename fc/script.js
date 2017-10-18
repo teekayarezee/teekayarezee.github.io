@@ -1,5 +1,5 @@
 /* eslint-env browser */
-//  _____ _        _____
+// _____ _        _____
 // |_   _| | ___ _|__  /
 //   | | | |/ / '__|/ / 
 //   | | |   <| |  / /_ 
@@ -41,4 +41,5 @@ function countDown() {
     updateEl("currentDate", tD.toString().split(' ').splice(1, 3).join(' '));
     document.getElementById("icon").style.backgroundPosition = "-" + (Math.floor((timeHour * 3600 + timeMin * 60 + timeSec) / 30) + -405) + "px 0px";
 }
-countDown();
+
+document.addEventListener("DOMContentLoaded", function () { "use strict"; countDown(); });
