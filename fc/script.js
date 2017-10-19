@@ -18,20 +18,14 @@ function countDown() {
     "use strict";
     var i, a = 10,
         tD = new Date(),
-        timeHour = tD.getUTCHours() < 12 ? tD.getUTCHours() + 48 : tD.getUTCHours() + 24, timeMin = tD.getUTCMinutes(), timeSec = tD.getUTCSeconds(),
+        h = tD.getUTCHours(), min = tD.getUTCMinutes(), timeSec = tD.getUTCSeconds(),
         updateEl = function (e, c) { document.getElementById(e).innerHTML = c; },
-        updateArray = function () { for (i = 6; i > 0; i -= 1) { var p = 6400, timeInMins = (timeHour * 60) + timeMin, tick;
-                                                                while (timeInMins <= p) { p -= a; }
-                                                                tick = p + a - timeInMins; if (tick < 1) { tick = a; } tick *= 60; a *= 2;
-                                                                updateEl("count" + i, ("0" + Math.floor((tick - timeSec) / 3600)).slice(-2) + ":" + ("0" + Math.floor(((tick - timeSec) % 3600) / 60)).slice(-2) + ":" + ("0" + (60 - timeSec)).slice(-2)); } };
-    
+        updateArray = function () { for (i = 6; i > 0; i -= 1) { var p = 6400, timeInMins = (h * 60) + min, tick; while (timeInMins <= p) { p -= a; }
+                                                                tick = p + a - timeInMins; if (tick < 1) { tick = a; } a *= 2; p = tick * 60 - timeSec;
+                                                                updateEl("count" + i, ("0" + Math.floor(p / 3600)).slice(-2) + ":" + ("0" + Math.floor((p % 3600) / 60)).slice(-2) + ":" + ("0" + (60 - timeSec)).slice(-2)); } };
     updateArray();
-    updateEl("currentHour", tD.getUTCHours());
-    updateEl("currentMin", timeMin);
-    updateEl("currentSec", timeSec);
-    updateEl("am_pm", tD.getUTCHours() >= 12 ? "PM" : "AM");
-    updateEl("currentDate", tD.toString().split(' ').splice(1, 3).join(' '));
-    px = (Math.floor((timeHour * 3600 + timeMin * 60 + timeSec) / 30) + -405);
+    updateEl("currentDate", tD.toUTCString(), h >= 12 ? "PM" : "AM");
+    px = (Math.floor(((h < 12 ? h + 48 : h + 24) * 3600 + min * 60 + timeSec) / 30) + -405);
 }
 
 document.addEventListener("DOMContentLoaded", function () { "use strict"; countDown(); });
