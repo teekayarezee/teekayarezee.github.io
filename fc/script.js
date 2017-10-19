@@ -25,7 +25,7 @@ function countDown() {
                                                                 updateEl("count" + i, ("0" + Math.floor(p / 3600)).slice(-2) + ":" + ("0" + Math.floor((p % 3600) / 60)).slice(-2) + ":" + ("0" + (60 - timeSec)).slice(-2)); } };
     updateArray();
     updateEl("currentDate", tD.toUTCString(), h >= 12 ? "PM" : "AM");
-    px = (Math.floor(((h < 12 ? h + 48 : h + 24) * 3600 + min * 60 + timeSec) / 30) + -405);
+    px = (Math.floor(((h < 12 ? h + 48 : h) * 3600 + min * 60 + timeSec) / 30) + -405);
 }
 
 document.addEventListener("DOMContentLoaded", function () { "use strict"; countDown(); });
