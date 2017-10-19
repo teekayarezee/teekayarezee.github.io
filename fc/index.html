@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <script src="table.js" type="text/javascript"></script>
-    <script src="scriptMin.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
     <link rel="icon" href="favicon.ico">
     <link href="newStyles.css" rel="stylesheet" type="text/css">
 </head>
@@ -218,7 +218,7 @@
                         <div class="div-table-col1" style="text-align:center;">Spirit Tree</div>
                         <div class="div-table-col" style="text-align:center;">320 Min</div>
                         <div class="div-table-col" style="text-align:center;">11</div>
-                        <div class="div-table-col" style="text-align:center;">2 days 10 hrs 40 min</div>
+                        <div class="div-table-col" style="text-align:center;">2 Day 10 Hrs 40 Min</div>
                         <div class="div-table-col" style="text-align:center;"><span id="count1"></span></div>
                     </div>
                     <div class="div-table-row2">
@@ -377,12 +377,13 @@
                     .stop(true, true).slideToggle('fast');
             });
         });
-        $(window).on('load', function() {
+
+        $(document).ready(function() {
             $('#container').fadeIn(500);
-            window.setInterval(function() {
-                countDown();
-            }, 100000);
+            window.setInterval(function() { countDown(); }, 1000);
+            window.setInterval(function graph() { document.getElementById("icon").style.backgroundPosition = "-" + px + "px 0px"; return graph; }(), 60000);
         });
+
         $(window).bind('beforeunload', function() {
             $('#container').fadeOut(500);
         });
