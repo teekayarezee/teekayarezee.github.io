@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
     <script src="table.js" type="text/javascript"></script>
-    <script src="script.js" type="text/javascript"></script>
+    <script src="script.min.js" type="text/javascript"></script>
     <link rel="icon" href="favicon.ico">
     <link href="newStyles.css" rel="stylesheet" type="text/css">
 </head>
@@ -380,13 +380,17 @@
 
         $(document).ready(function() {
             $('#container').fadeIn(500);
+            var tC = 0, t0a = tC, t1a = tC;
             window.setInterval(function update() {
+                var t0 = performance.now();
+                t0a += t0;
                 countDown();
+                var t1 = performance.now();
+                t1a += t1;
+                tC++;
+                console.log(tC + " took avg " + ((t1a - t0a) /tC).toFixed(5) + " milliseconds.");
             }, 1000);
-            window.setInterval(function graph() {
-                document.getElementById("icon").style.backgroundPosition = "-" + x + "px 0px";
-                return graph;
-            }(), 1000);
+            window.setInterval(function graph() { document.getElementById("icon").style.backgroundPosition = "-" + x + "px 0px"; return graph; }(), 1000);
         });
 
         $(window).bind('beforeunload', function() {

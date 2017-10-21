@@ -8,12 +8,10 @@
 var x, o = document;
 function countDown() {
     "use strict";
-    var a = 10, i, p, k, d = new Date(), h = d.getUTCHours() + 24, m = d.getUTCMinutes(), s = d.getUTCSeconds(), t = h * 60 + m,
-        f = function (e) { return e === 60 ? "00" : ("0" + ~~(e)).slice(-2); };
-    for (i = 6; i > 0; i -= 1) { p = 6400; while (t <= p) { p -= a; } k = p + a - t; k = k < 1 ? a : k; a *= 2; p = k * 60 - s;
-                                o.getElementById(i).innerHTML = f(p / 3600) + ":" + f((p % 3600) / 60) + ":" + f(p % 60); }
+    var a = 10, i, p, d = new Date(), h = d.getUTCHours() + 48, m = d.getUTCMinutes(), s = d.getUTCSeconds(), t = h * 60 + m, f = function (e) { return e === 60 ? "00" : ("0" + ~~e).slice(-2); };
+    for (i = 6; i > 0; i--) { for (p = 6400; t <= p;) { p -= a; } p = 60 * (p + a - t < 1 ? a : p + a - t) - s; a *= 2; o.getElementById(i).innerHTML = f(p / 3600) + ":" + f(p % 3600 / 60) + ":" + f(p % 60); }
     o.getElementById("cD").innerHTML = d.toUTCString();
-    x = ~~(((h * 60 + m) * 60 + s) / 30) + -405;
+    x = ~~((60 * (60 * h + m) + s) / 30) + -405;
 }
 
 o.addEventListener("DOMContentLoaded", function () { "use strict"; countDown(); });
