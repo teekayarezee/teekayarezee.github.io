@@ -1,6 +1,6 @@
 /* eslint-env browser */ /* exported x */
 //  _____ _        _____  |  Farming Tick Timer/Clock/Calculator - PHP to HTML/JS Re-write
-// |_   _| | ___ _|__  /  |  Version 2.5a
+// |_   _| | ___ _|__  /  |  Version 3a
 //   | | | |/ / '__|/ /   |  Original Author: "Indecent Act" / @RSLinkify
 //   | | |   <| |  / /_   |  Author:          "TkrZ"         / @TkrZ
 //   |_| |_|\_\_| /____|  |  - Many thanks to Indecent Act for permission to keep this project alive! -
