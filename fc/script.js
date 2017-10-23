@@ -12,7 +12,7 @@ function countDown() {
     if (~~d / 2 === ~~(d / 2)) { h = h < 12 ? h + 48 : h; } else { h += 24; }
     t = h * 60 + ~~m;
     for (i = 6; i > 0; i--) { for (p = 6400; t <= p;) { p -= a; } p = 60 * (p + a - t < 1 ? a : p + a - t) - s; a *= 2; o.getElementById(i).innerHTML = f(p / 3600) + ":" + f(p % 3600 / 60) + ":" + f(p % 60); }
-    o.getElementById("cD").innerHTML = new Date().toUTCString;
+    o.getElementById("cD").innerHTML = new Date().toUTCString();
     x = ~~((60 * (60 * h + ~~m) + s) / 30) + -405;
 }
 
