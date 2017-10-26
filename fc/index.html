@@ -384,6 +384,7 @@
                 countDown();
             }, 1000);
             window.setInterval(function graph() {
+                document.getElementById("cD").innerHTML = new Date().toUTCString();
                 document.getElementById("icon").style.backgroundPosition = "-" + x + "px 0px";
                 return graph;
             }(), 1000);
