@@ -3,14 +3,16 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-        <title>tomw.me</title>
-        <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+        <title>irobot335</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <style>
 			body {background-color: powderblue; }
-			h1   {font-family: 'Bungee Shade', cursive; 
-				font-size: 1337%; color: powderblue; 
-				text-shadow: 10px -10px 50px azure ; 
-				text-align: center; 
+			h1   {font-family: 'Quicksand', cursive; 
+				font-size: 1337%; color: white; 
+				text-shadow: 10px -10px 50px lightslategray; 
+				text-align: center;
 				animation: fadein 3s; 
 				}
 			@keyframes fadein {
@@ -21,6 +23,15 @@
     </head>
     
     <body>
-    	<h1>tomw.me</h1>
+		<div id="scene">
+			<div data-depth="0.6"><h1>irobot335</h1></div>
+		</div>
     </body>
+    <script>
+        var color = randomColor({hue: 'random', luminosity: 'light'}),
+            scene = document.getElementById('scene'),
+            pI = new Parallax(scene);
+        
+        document.body.style.backgroundColor = color;
+    </script>
 </html>
