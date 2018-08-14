@@ -2,22 +2,27 @@
 <html ng-app>
 
 <head>
-	<script data-require="angular.js@1.2.0-rc3-nonmin" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
-	<link href="style.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-	<script src="script.js"></script>
+    <meta charset="UTF-8">
+	<meta name="description" content="De facto Steam fixes">
+	<link rel="icon" href="//13bob.net/world.gif">
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <script data-require="angular.js@1.2.0-rc3-nonmin" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
+    <script src="script.js"></script>
+    <title>13bob > Steam w/ Spanner</title>
 </head>
 
 <body>
-	<div ng-controller='BeautyController'>
-    <h1><a href="//13bob.net/">13bob</a></h1>
-    <center>
-        <h2>Chat Beautifier</h2>
-		<form>
-			<textarea ng-model="chat" id="chat" placeholder="Paste an ugly (new) Steam chat log here..." type="text" cols=100 rows=27></textarea><br><br>
-			<input ng-click="beautify()" type="submit" value="BEAUTIFY">
-		</form>
-	</div>
+    <div ng-controller='BeautyController'>
+        <h1><a href="//13bob.net/">13bob</a></h1>
+        <center>
+            <h2>Chat Beautifier</h2>
+            <form>
+                <textarea ng-model="chat" id="chat" placeholder="Paste an ugly (new) Steam chat log here..." type="text" cols=100 rows=27></textarea><br><br>
+                <input ng-click="beautify()" type="submit" value="BEAUTIFY">
+            </form>
+        </center>
+    </div>
 </body>
 
 </html>
