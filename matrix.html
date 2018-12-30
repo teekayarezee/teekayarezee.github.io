@@ -12,7 +12,7 @@
                 c.width = window.innerWidth;
                 return s;
             }(),
-            columns = [...Array(c.width / fontSize)].fill(1);
+            columns = [...Array(Math.floor(c.width / fontSize))].fill(1);
 
         window.onresize = () => setCanvas();
         
