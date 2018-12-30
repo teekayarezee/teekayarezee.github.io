@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body style="margin:0;overflow:hidden;">
+    <canvas id="c"></canvas>
+    <script>
+        let fontSize = 12,
+            c = document.getElementById("c"),
+            ctx = c.getContext("2d"),
+            setCanvas = function s() {
+                c.height = window.innerHeight;
+                c.width = window.innerWidth;
+                return s;
+            }(),
+            columns = [...Array(c.width / fontSize)].fill(1);
+
+        window.onresize = () => setCanvas();
+        
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; //Black BG for the canvas with transparency to show trail
+            ctx.fillRect(0, 0, c.width, c.height); //Fill page
+
+            ctx.fillStyle = "#0F0"; //Green text
+            ctx.font = `${fontSize}px arial`;
+
+            columns = columns.map((column, i) => {
+                let char = String.fromCharCode((Math.random() >= 0.75) ? 19968 + Math.random() * 20928 : 12352 + Math.random() * 192);
+                
+                ctx.fillStyle = "#0F0"; //Green text
+                ctx.fillText(char, i * fontSize, column * fontSize);
+
+                return (column * fontSize > c.height && Math.random() > 0.975) ? 0 : ++column; //increment Y
+            });
+        }
+
+        setInterval(draw, 33);
+
+    </script>
+</body>
+
+</html>
