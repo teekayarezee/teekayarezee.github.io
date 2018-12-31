@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body style="margin:0;overflow:hidden" bgcolor="#000">
+    <canvas id="c"></canvas>
+    <script>
+        let fontSize = 16,
+            c = document.getElementById("c"),
+            ctx = c.getContext("2d"),
+            setCanvas = function s() {
+                c.height = window.innerHeight;
+                c.width = window.innerWidth;
+                return s;
+            }(),
+            columns = Math.floor((c.width / fontSize) * 2);
+
+        columns = [...Array(columns)].map(() => Math.random() * columns);
+
+        window.onresize = () => setCanvas();
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.07)"; //Black with alpha to show trail
+            ctx.fillRect(0, 0, c.width, c.height); //Fill page
+
+            ctx.font = ` ${fontSize}px Consolas`;
+            ctx.fillStyle = "#0F0"; //Green text
+
+            columns = columns.map((column, i) => {
+                let rand = Math.random();
+                let alphabet = '00134788IZ*:."+';
+                let char = String.fromCharCode((rand > 0.4) ? 0xFF66 + Math.random() * 56 : alphabet.charCodeAt(Math.floor(Math.random() * alphabet.length)));
+
+                ctx.fillText(char, i * fontSize / 2, column * fontSize);
+
+                return (column * fontSize > c.height && Math.random() > 0.975) ? 0 : ++column; //increment Y
+            });
+        }
+
+        setInterval(draw, 33);
+
+    </script>
+</body>
+
+</html>
