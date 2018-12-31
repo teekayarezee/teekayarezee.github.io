@@ -5,6 +5,7 @@
     <canvas id="c"></canvas>
     <script>
         let fontSize = 16,
+            alphabet = '00134788IZ*:."+',
             c = document.getElementById("c"),
             ctx = c.getContext("2d"),
             setCanvas = function s() {
@@ -19,24 +20,22 @@
         window.onresize = () => setCanvas();
 
         function draw() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.07)"; //Black with alpha to show trail
-            ctx.fillRect(0, 0, c.width, c.height); //Fill page
+            ctx.fillStyle = "rgba(0, 0, 0, 0.06)";
+            ctx.fillRect(0, 0, c.width, c.height);
 
-            ctx.font = ` ${fontSize}px Consolas`;
-            ctx.fillStyle = "#0F0"; //Green text
+            ctx.font = `${fontSize}px Consolas`;
+            ctx.fillStyle = '#0F0';
 
             columns = columns.map((column, i) => {
-                let rand = Math.random();
-                let alphabet = '00134788IZ*:."+';
-                let char = String.fromCharCode((rand > 0.4) ? 0xFF66 + Math.random() * 56 : alphabet.charCodeAt(Math.floor(Math.random() * alphabet.length)));
+                let char = String.fromCharCode((Math.random() > 0.4) ? 0xFF66 + Math.random() * 56 : alphabet.charCodeAt(Math.floor(Math.random() * alphabet.length)));
 
-                ctx.fillText(char, i * fontSize / 2, column * fontSize);
+                ctx.fillText(char, i * fontSize / 1.75, column * fontSize);
 
                 return (column * fontSize > c.height && Math.random() > 0.975) ? 0 : ++column; //increment Y
             });
         }
 
-        setInterval(draw, 33);
+        setInterval(draw, 44);
 
     </script>
 </body>
