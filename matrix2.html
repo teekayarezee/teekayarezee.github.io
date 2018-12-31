@@ -9,33 +9,34 @@
             alphabetLength = alphabet.length,
             c = document.getElementById('c'),
             ctx = c.getContext('2d'),
-            setCanvas = function s() {
+
+            setCanvas = () => {
                 c.height = window.innerHeight;
                 c.width = window.innerWidth;
-                return s;
-            }(),
-            columns = Math.floor((c.width / fontSize) * 2);
+                return c.width;
+            },
 
-        columns = [...Array(columns)].map(() => Math.random() * columns);
+            columns = Array.from({
+                length: Math.floor((setCanvas() / fontSize) * 2)
+            }, () => Math.floor(Math.random() * -100)),
+
+            draw = () => {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+                ctx.fillRect(0, 0, c.width, c.height);
+
+                ctx.font = `${fontSize}px Consolas`;
+                ctx.fillStyle = '#0F0';
+
+                columns = columns.map((column, i) => {
+                    let char = (Math.random() > 0.4) ? String.fromCharCode(0xFF66 + Math.random() * 56) : alphabet.charAt(Math.floor(Math.random() * alphabetLength));
+
+                    ctx.fillText(char, i * fontSize / 1.75, column * fontSize);
+
+                    return (column * fontSize > c.height && Math.random() > 0.975) ? 0 : ++column; //increment Y
+                });
+            };
 
         window.onresize = () => setCanvas();
-
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
-            ctx.fillRect(0, 0, c.width, c.height);
-
-            ctx.font = `${fontSize}px Consolas`;
-            ctx.fillStyle = '#0F0';
-
-            columns = columns.map((column, i) => {
-                let char = (Math.random() > 0.4) ? String.fromCharCode(0xFF66 + Math.random() * 56) : alphabet.charAt(Math.floor(Math.random() * alphabetLength));
-
-                ctx.fillText(char, i * fontSize / 1.75, column * fontSize);
-
-                return (column * fontSize > c.height && Math.random() > 0.975) ? 0 : ++column; //increment Y
-            });
-        }
-
         setInterval(draw, 44);
 
     </script>
