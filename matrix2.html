@@ -6,8 +6,9 @@
     <script>
         let fontSize = 16,
             alphabet = '00134788IZ*:."+',
-            c = document.getElementById("c"),
-            ctx = c.getContext("2d"),
+            alphabetLength = alphabet.length,
+            c = document.getElementById('c'),
+            ctx = c.getContext('2d'),
             setCanvas = function s() {
                 c.height = window.innerHeight;
                 c.width = window.innerWidth;
@@ -20,14 +21,14 @@
         window.onresize = () => setCanvas();
 
         function draw() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.06)";
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
             ctx.fillRect(0, 0, c.width, c.height);
 
             ctx.font = `${fontSize}px Consolas`;
             ctx.fillStyle = '#0F0';
 
             columns = columns.map((column, i) => {
-                let char = String.fromCharCode((Math.random() > 0.4) ? 0xFF66 + Math.random() * 56 : alphabet.charCodeAt(Math.floor(Math.random() * alphabet.length)));
+                let char = (Math.random() > 0.4) ? String.fromCharCode(0xFF66 + Math.random() * 56) : alphabet.charAt(Math.floor(Math.random() * alphabetLength));
 
                 ctx.fillText(char, i * fontSize / 1.75, column * fontSize);
 
