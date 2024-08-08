@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Tom W</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-        <style>
-            body {
-                margin: auto;
-                width: 50%;
-            }
-            h1 {
-                color: white;
-                font-family: 'Quicksand', cursive;
-                font-size: 14rem;
-                text-shadow: 10px -10px 50px lightslategray;
-                text-align: center;
-                animation: fadein 3s;
-            }
-            @keyframes fadein {
-                from { opacity: 0.2; }
-            }
-        </style>
-    </head>
-    <body>
-        <div id="scene">
-            <div data-depth="0.6">
-                <h1>Tom W</h1>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Tom W</title>
+    <meta name="description" content="Tom W's homepage.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: auto;
+            width: 50%;
+            background-color: white;
+        }
+        h1 {
+            color: white;
+            font-family: "Quicksand", cursive, sans-serif;
+            font-size: 14rem;
+            text-shadow: 10px -10px 50px lightslategray;
+            text-align: center;
+            animation: fadein 3s;
+        }
+        @keyframes fadein {
+            from { opacity: 0.2; }
+            to { opacity: 1; }
+        }
+    </style>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+</head>
+<body>
+    <div id="scene">
+        <div data-depth="0.6">
+            <h1>Tom W</h1>
         </div>
-    </body>
+    </div>
     <script>
-        new Parallax(document.getElementById('scene'));
-        document.body.style.backgroundColor = randomColor({hue: 'random', luminosity: 'light'}) || "#40c4ff";
+        window.addEventListener("load", function () {
+            new Parallax(document.getElementById("scene"));
+            document.body.style.backgroundColor = randomColor({ hue: "random", luminosity: "light" }) || "#40c4ff";
+        });
     </script>
+</body>
 </html>
